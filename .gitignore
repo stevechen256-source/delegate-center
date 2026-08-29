@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.vscode/
+.idea/
+
+# 运行时产物
+runs/
+*.ndjson
+*.log
+
+# 本地配置（含凭据，勿提交）
+opencode.jsonc
+auth.json
+.master.key
+*.local.md
