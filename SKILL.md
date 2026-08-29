@@ -16,10 +16,12 @@ agent_created: true
 >
 > **最简调用（照抄，不用 `-m`、不用 `env -u`）**：
 > ```bash
-> PY=/Users/ryder/.workbuddy/binaries/python/versions/3.13.12/bin/python3
-> OC=/Users/ryder/.workbuddy/skills/delegate-center/scripts/oc_run.py
+> PY=$PY
+> OC=$DELEGATE_CENTER/scripts/oc_run.py
 > $PY $OC --dir <项目> --prompt "<任务+成功标准>"
 > ```
+> 变量只需设一次：`DELEGATE_CENTER` = 本仓库目录，`PY` = python3（3.11+）。
+>
 > ❌ **"超时"不再是跳过外包的理由**——代理已自动剥离、挂死模型已黑名单、45s 零事件自动换模型。分级细则见 `delegate-first` skill。
 
 > **一句话**：把「重复量大、规则明确、能外包」的活，甩给免费 AI 干，主 Agent 只做拆任务、定标准、验收。两条通道，按任务类型路由：
@@ -38,8 +40,8 @@ agent_created: true
 **通道 A（本地 opencode，落盘编码）** —— 先设变量（一次性）：
 
 ```bash
-OC=/Users/ryder/.workbuddy/skills/delegate-center/scripts/oc_run.py
-PY=/Users/ryder/.workbuddy/binaries/python/versions/3.13.12/bin/python3
+OC=$DELEGATE_CENTER/scripts/oc_run.py
+PY=$PY
 ```
 
 | 场景 | 直接调用（在上方变量后拼接） |
@@ -83,8 +85,8 @@ PY=/Users/ryder/.workbuddy/binaries/python/versions/3.13.12/bin/python3
 ### 用法（优先用封装脚本，别手搓）
 
 ```bash
-OC=/Users/ryder/.workbuddy/skills/delegate-center/scripts/oc_run.py
-PY=/Users/ryder/.workbuddy/binaries/python/versions/3.13.12/bin/python3
+OC=$DELEGATE_CENTER/scripts/oc_run.py
+PY=$PY
 
 # 标准外包（最常用）—— 不指定 -m，交给默认模型 + 自动 failover
 $PY $OC --dir /path/to/project --title "补 utils 单测" --prompt-file /tmp/task.md

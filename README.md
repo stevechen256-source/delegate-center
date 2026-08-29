@@ -45,10 +45,17 @@
 
 ### 通道 A：一条命令外包
 
-```bash
-PY=/path/to/python3
-OC=/path/to/delegate-center/scripts/oc_run.py
+先设两个变量（只设一次，可写进 `.zshrc`）：
 
+```bash
+export DELEGATE_CENTER="/path/to/delegate-center"   # 本仓库所在目录
+export PY="${PYTHON:-python3}"                      # 需 3.11+
+OC="$DELEGATE_CENTER/scripts/oc_run.py"
+```
+
+然后：
+
+```bash
 # 标准外包（最常用）—— 不指定 -m，交给默认模型 + 自动 failover
 $PY $OC --dir /path/to/project --title "补 utils 单测" --prompt-file /tmp/task.md
 
